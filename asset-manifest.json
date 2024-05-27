@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c8753d9.css",
+    "main.js": "/static/js/main.cb323e17.js",
+    "static/js/453.a0219e88.chunk.js": "/static/js/453.a0219e88.chunk.js",
+    "static/media/img7.jpg": "/static/media/img7.9fed90c2e5f863ce1e3f.jpg",
+    "static/media/img5.jpg": "/static/media/img5.5a9fbf77dbbeaa8371ec.jpg",
+    "static/media/img3.jpg": "/static/media/img3.e167b894e51ebb9d8b8d.jpg",
+    "static/media/img2.jpg": "/static/media/img2.1b9cb11eb5f26b9227e9.jpg",
+    "static/media/img6.jpg": "/static/media/img6.e7fdc5b62e6f252ade9d.jpg",
+    "static/media/img4.jpg": "/static/media/img4.e512a05dc7a1c7a522ba.jpg",
+    "static/media/img1.jpg": "/static/media/img1.93eedef2c354dc78a7f7.jpg",
+    "static/media/Favorit-Light.woff": "/static/media/Favorit-Light.b15aecd3abb644c8be79.woff",
+    "static/media/NewEdge666-LightRoundedSlanted.woff": "/static/media/NewEdge666-LightRoundedSlanted.3a911c95a729b7fc352c.woff",
+    "static/media/OrnamentumRegular.woff": "/static/media/OrnamentumRegular.62b1e3df28bf1ff7c427.woff",
+    "index.html": "/index.html",
+    "main.3c8753d9.css.map": "/static/css/main.3c8753d9.css.map",
+    "main.cb323e17.js.map": "/static/js/main.cb323e17.js.map",
+    "453.a0219e88.chunk.js.map": "/static/js/453.a0219e88.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c8753d9.css",
+    "static/js/main.cb323e17.js"
+  ]
+}
