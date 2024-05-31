@@ -15,13 +15,16 @@ const Events = ({ events }: EventsProps) => {
   const currentYear = today.getFullYear();
 
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+  const adjustedFirstDayOfMonth =
+    firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const gridCells: ReactElement[] = useMemo(() => {
     const cells = [];
-    for (let i = 0; i < firstDayOfMonth; i++) {
+    for (let i = 0; i < adjustedFirstDayOfMonth; i++) {
       cells.push(
         <div
           key={`empty-${i}`}
@@ -44,12 +47,12 @@ const Events = ({ events }: EventsProps) => {
     });
 
     return cells;
-  }, [daysArray, events, firstDayOfMonth]);
+  }, [adjustedFirstDayOfMonth, daysArray, events]);
 
   return (
     <div className="flex justify-center mt-[20px]">
       <div className="grid grid-cols-7 lowercase border">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
           <div
             key={day}
             className="day-header h-[50px] pt-[8px] font-bold text-center"
