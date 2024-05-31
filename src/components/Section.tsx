@@ -1,5 +1,11 @@
 import classNames from "classnames";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 type SectionProps = {
   className?: string;
@@ -48,32 +54,42 @@ const Section = ({
 
   const [firstColumn, secondColumn] = getContentColumns(content);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (columnRef.current && imageRef.current && topColumnRef) {
+  const updateImagePosition = useCallback(() => {
+    if (columnRef.current && imageRef.current && topColumnRef.current) {
       const columnRect = columnRef.current.getBoundingClientRect();
-      const topColumnRect = columnRef.current.getBoundingClientRect();
+      const topColumnRect = topColumnRef.current.getBoundingClientRect();
       const image = imageRef.current;
-      image.style.top = `${topColumnRect.bottom + 27}px`;
+      image.style.top = `${topColumnRect.bottom + window.scrollY + 27}px`;
 
       if (textAlign === "left") {
         image.style.left = `${columnRect.right + 27}px`;
       } else {
         image.style.left = `${columnRect.left - image.offsetWidth - 10}px`;
       }
+
+      image.style.transform = `translateY(${scrollY * -0.3}px)`;
     }
-  }, [textAlign]);
+  }, [scrollY, textAlign]);
+
+  useEffect(() => {
+    console.log(imageRef, columnRef, topColumnRef);
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      if (imageRef.current !== null) {
+        updateImagePosition();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    if (scrollY > 400) {
+      updateImagePosition();
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY, textAlign, updateImagePosition]);
 
   return (
     <>
@@ -99,25 +115,21 @@ const Section = ({
               textAlign === "left" ? "justify-start" : "justify-end"
             )}
           >
+            <div ref={columnRef} className="w-[780px]">
+              <div className="text-[28px] font-light font-favorit">
+                {secondColumn}
+              </div>
+            </div>
             <div
               ref={imageRef}
-              className="absolute transform transition-transform duration-250 ease-in-out
-              "
-              style={{
-                top: "unset",
-                transform: `translateY(${scrollY * -0.3}px)`,
-              }}
+              className="absolute transition-transform duration-250 ease-in-out"
+              style={{ top: "unset" }}
             >
               <img
                 src={imageSrc}
                 alt="Section illustration"
                 className="w-[670px]"
               />
-            </div>
-            <div ref={columnRef} className="w-[780px]">
-              <div className="text-[28px] font-light font-favorit">
-                {secondColumn}
-              </div>
             </div>
           </div>
         </div>
