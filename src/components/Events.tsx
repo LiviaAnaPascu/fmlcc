@@ -28,7 +28,7 @@ const Events = ({ events }: EventsProps) => {
       cells.push(
         <div
           key={`empty-${i}`}
-          className="empty-cell min-h-[100px] min-w-[100px] border"
+          className="empty-cell h-full w-full min-h-[100px] border"
         ></div>
       );
     }
@@ -38,10 +38,12 @@ const Events = ({ events }: EventsProps) => {
       cells.push(
         <div
           key={day}
-          className="day-cell min-h-[100px] min-w-[100px] border p-[8px]"
+          className="day-cell h-full w-full min-h-[100px] border p-[8px]"
         >
           <div className="day-number">{day}</div>
-          {event && <div className="event-message">{event.message}</div>}
+          {event && (
+            <div className="event-message capitalize">{event.message}</div>
+          )}
         </div>
       );
     });
@@ -50,7 +52,7 @@ const Events = ({ events }: EventsProps) => {
   }, [adjustedFirstDayOfMonth, daysArray, events]);
 
   return (
-    <div className="flex justify-center mt-[20px]">
+    <div className="mt-[20px]">
       <div className="grid grid-cols-7 lowercase border">
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
           <div

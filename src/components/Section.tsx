@@ -1,11 +1,5 @@
 import classNames from "classnames";
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactNode, useRef } from "react";
 
 type SectionProps = {
   className?: string;
@@ -47,49 +41,49 @@ const Section = ({
   textAlign,
   imageSrc,
 }: SectionProps) => {
-  const [scrollY, setScrollY] = useState(0);
+  //const [scrollY, setScrollY] = useState(0);
   const columnRef = useRef<HTMLDivElement>(null);
   const topColumnRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   const [firstColumn, secondColumn] = getContentColumns(content);
 
-  const updateImagePosition = useCallback(() => {
-    if (columnRef.current && imageRef.current && topColumnRef.current) {
-      const columnRect = columnRef.current.getBoundingClientRect();
-      const topColumnRect = topColumnRef.current.getBoundingClientRect();
-      const image = imageRef.current;
-      image.style.top = `${topColumnRect.bottom + window.scrollY + 27}px`;
+  // const updateImagePosition = useCallback(() => {
+  //   if (columnRef.current && imageRef.current && topColumnRef.current) {
+  //     const columnRect = columnRef.current.getBoundingClientRect();
+  //     const topColumnRect = topColumnRef.current.getBoundingClientRect();
+  //     const image = imageRef.current;
+  //     image.style.top = `${topColumnRect.bottom + window.scrollY + 27}px`;
 
-      if (textAlign === "left") {
-        image.style.left = `${columnRect.right + 27}px`;
-      } else {
-        image.style.left = `${columnRect.left - image.offsetWidth - 10}px`;
-      }
+  //     if (textAlign === "left") {
+  //       image.style.left = `${columnRect.right + 27}px`;
+  //     } else {
+  //       image.style.left = `${columnRect.left - image.offsetWidth - 10}px`;
+  //     }
 
-      image.style.transform = `translateY(${scrollY * -0.3}px)`;
-    }
-  }, [scrollY, textAlign]);
+  //     image.style.transform = `translateY(${scrollY * -0.3}px)`;
+  //   }
+  // }, [scrollY, textAlign]);
 
-  useEffect(() => {
-    console.log(imageRef, columnRef, topColumnRef);
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      if (imageRef.current !== null) {
-        updateImagePosition();
-      }
-    };
+  // useEffect(() => {
+  //   console.log(imageRef, columnRef, topColumnRef);
+  //   const handleScroll = () => {
+  //     setScrollY(window.scrollY);
+  //     if (imageRef.current !== null) {
+  //       updateImagePosition();
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    if (scrollY > 400) {
-      updateImagePosition();
-    }
+  //   if (scrollY > 400) {
+  //     updateImagePosition();
+  //   }
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollY, textAlign, updateImagePosition]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [scrollY, textAlign, updateImagePosition]);
 
   return (
     <>
@@ -109,27 +103,30 @@ const Section = ({
               </div>
             </div>
           </div>
-          <div
-            className={classNames(
-              "flex",
-              textAlign === "left" ? "justify-start" : "justify-end"
-            )}
-          >
-            <div ref={columnRef} className="w-[780px]">
+          <div className={classNames("flex justify-around gap-[27px]")}>
+            <div
+              ref={columnRef}
+              className={classNames(
+                "w-[780px]",
+                textAlign === "right" ? "order-last" : undefined
+              )}
+            >
               <div className="text-[28px] font-light font-favorit">
                 {secondColumn}
               </div>
             </div>
-            <div
-              ref={imageRef}
-              className="absolute transition-transform duration-250 ease-in-out"
-              style={{ top: "unset" }}
-            >
-              <img
-                src={imageSrc}
-                alt="Section illustration"
-                className="w-[670px]"
-              />
+            <div className="w-[670px]">
+              <div
+                ref={imageRef}
+                //className="absolute transition-transform duration-250 ease-in-out"
+                // style={{ top: "unset", left: "0px" }}
+              >
+                <img
+                  src={imageSrc}
+                  alt="Section illustration"
+                  className="w-[670px]"
+                />
+              </div>
             </div>
           </div>
         </div>

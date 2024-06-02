@@ -14,11 +14,10 @@ function App() {
   const sections = ["home", "about", "strava", "events"];
 
   const events = [
-    { day: 2, message: "Event 1" },
-    { day: 9, message: "Event 2" },
-    { day: 16, message: "Event 3" },
-    { day: 23, message: "Event 4" },
-    { day: 30, message: "Event 4" },
+    { day: 6, message: "TBA" },
+    { day: 13, message: "TBA" },
+    { day: 20, message: "TBA" },
+    { day: 27, message: "TBA" },
   ];
 
   useEffect(() => {
