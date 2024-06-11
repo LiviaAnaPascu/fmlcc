@@ -1,5 +1,6 @@
 import React, { ReactNode, useMemo } from "react";
 import Gallery from "./Gallery";
+import { Link } from "react-router-dom";
 
 type NavBarProps = {
   logo: ReactNode;
@@ -20,25 +21,13 @@ const NavBar = ({ logo, sections }: NavBarProps) => {
       <nav className="fixed top-0 flex w-full backdrop-blur-sm p-4 z-10 h-[100px] items-center">
         <div className="grow w-full flex justify-around">
           {navBarSections.first.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className="hover:rounded-full hover:border-2 hover:border-red-500 text-red-500 border-2 border-transparent px-2"
-            >
-              {section}
-            </a>
+            <Link to={`/${section}`} className={"hover:rounded-full hover:border-2 hover:border-red-500 text-red-500 border-2 border-transparent px-2"}>{section}</Link>
           ))}
         </div>
         <div className="flex-none w-[100px]">{logo}</div>
         <div className="grow w-full flex justify-around">
           {navBarSections.second.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className="hover:rounded-full hover:border-2 hover:border-red-500 text-red-500 border-2 border-transparent px-2"
-            >
-              {section}
-            </a>
+           <Link to={`/${section}`} className={"hover:rounded-full hover:border-2 hover:border-red-500 text-red-500 border-2 border-transparent px-2"}>{section}</Link>
           ))}
         </div>
       </nav>

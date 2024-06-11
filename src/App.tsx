@@ -1,77 +1,57 @@
-import React, { useEffect, useState } from "react";
-import NavBar from "./components/navbar/NavBar";
-import Footer from "./components/navbar/footer/Footer";
-import { Logo } from "./svgs/Logo";
-import Section from "./components/Section";
-import Events from "./components/Events";
-import image from "./assets/images/homeImage1.jpeg";
-import image2 from "./assets/images/homeImage2.jpeg";
+import "./styles.css";
+import * as React from "react";
+import { AnimatePresence } from "framer-motion";
+import { useLocation, useRoutes } from "react-router-dom";
+import { Home } from "./components/Home";
+import { Page } from "./components/Page";
+import { amsterdamPhotosMetadata, londonPhotosMetadata } from "./data";
 
-function App() {
-  const [aboutContent, setAboutContent] = useState("");
-  const [voicesContent, setVoicesContent] = useState("");
+export default function App() {
+  const element = useRoutes([
+    {
+      path: "/",
+      element: <Home />
+    },
+    {
+      path: "/home",
+      element: <Home />
+    },
+    {
+      path: "/about",
+      element: (
+        <Page
+          title="about"
+          titleWidth={8}
+        />
+      )
+    },
+    {
+      path: "/events",
+      element: (
+        <Page
+          title="events"
+          titleWidth={8}
+        />
+      )
+    },
+    {
+      path: "/strava",
+      element: (
+        <Page
+          title="strava"
+          titleWidth={8}
+        />
+      )
+    }
+  ]);
 
-  const sections = ["home", "about", "strava", "events"];
+  const location = useLocation();
 
-  const events = [
-    { day: 6, message: "TBA" },
-    { day: 13, message: "TBA" },
-    { day: 20, message: "TBA" },
-    { day: 27, message: "TBA" },
-  ];
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/about.txt`)
-      .then((response) => response.text())
-      .then((text) => setAboutContent(text))
-      .catch((error) => console.error("Error fetching content:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/voicesFromWithin.txt`)
-      .then((response) => response.text())
-      .then((text) => setVoicesContent(text))
-      .catch((error) => console.error("Error fetching content:", error));
-  }, []);
+  if (!element) return null;
 
   return (
-    <div className="App">
-      <NavBar logo={<Logo width={139} height={88} />} sections={sections} />
-      <main className="px-[50px]">
-        <Section
-          className="mb-[200px]"
-          header="ABOUT"
-          content={aboutContent}
-          id="about"
-          textAlign="right"
-          imageSrc={image}
-        />
-        <Section
-          className="mt-[226px]"
-          header="VOICES FROM WITHIN"
-          content={voicesContent}
-          textAlign="left"
-          imageSrc={image2}
-        />
-        <Section
-          header=""
-          id=""
-          content={
-            <div className="bg-gray-300 h-[100vh] mt-[226px]"> movie</div>
-          }
-          imageSrc=""
-        ></Section>
-        <Section
-          className="mt-[226px]"
-          header="Events"
-          id="events"
-          content={<Events events={events} />}
-          imageSrc=""
-        ></Section>
-      </main>
-      <Footer />
-    </div>
+    <AnimatePresence mode="wait" initial={false}>
+      {React.cloneElement(element, { key: location.pathname })}
+    </AnimatePresence>
   );
 }
-
-export default App;

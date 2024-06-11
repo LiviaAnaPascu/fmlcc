@@ -17,7 +17,7 @@ const images = [
   { src: image1, aspectRatio: 1.5, size: 500, left: -50, bottom: 0 },
   { src: image2, aspectRatio: 1.2, size: 375, left: 20, bottom: -150 },
   { src: image3, aspectRatio: 1.2, size: 600, left: -80, bottom: 0 },
-  { src: image4, aspectRatio: 1.8, size: 1000, left: -10, bottom: -100 },
+  { src: image4, aspectRatio: 3.2, size: 1000, left: -10, bottom: -100 },
   { src: image5, aspectRatio: 1.3, size: 500, left: 80, bottom: 0 },
   { src: image6, aspectRatio: 1.6, size: 440, left: 50, bottom: -120 },
   { src: image7, aspectRatio: 1.6, size: 600, left: 50, bottom: 0 },

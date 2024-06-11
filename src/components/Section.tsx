@@ -48,43 +48,6 @@ const Section = ({
 
   const [firstColumn, secondColumn] = getContentColumns(content);
 
-  // const updateImagePosition = useCallback(() => {
-  //   if (columnRef.current && imageRef.current && topColumnRef.current) {
-  //     const columnRect = columnRef.current.getBoundingClientRect();
-  //     const topColumnRect = topColumnRef.current.getBoundingClientRect();
-  //     const image = imageRef.current;
-  //     image.style.top = `${topColumnRect.bottom + window.scrollY + 27}px`;
-
-  //     if (textAlign === "left") {
-  //       image.style.left = `${columnRect.right + 27}px`;
-  //     } else {
-  //       image.style.left = `${columnRect.left - image.offsetWidth - 10}px`;
-  //     }
-
-  //     image.style.transform = `translateY(${scrollY * -0.3}px)`;
-  //   }
-  // }, [scrollY, textAlign]);
-
-  // useEffect(() => {
-  //   console.log(imageRef, columnRef, topColumnRef);
-  //   const handleScroll = () => {
-  //     setScrollY(window.scrollY);
-  //     if (imageRef.current !== null) {
-  //       updateImagePosition();
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-
-  //   if (scrollY > 400) {
-  //     updateImagePosition();
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [scrollY, textAlign, updateImagePosition]);
-
   return (
     <>
       {typeof content === "string" ? (
