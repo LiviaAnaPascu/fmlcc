@@ -98,7 +98,7 @@ const Section = ({
           <div className="flex justify-center">
             <div ref={topColumnRef} className="w-[750px]">
               <ColumnHeader header={header} />
-              <div className="text-[28px] font-light font-favorit">
+              <div className="text-[18px] font-light font-favorit">
                 {firstColumn}
               </div>
             </div>
@@ -111,7 +111,7 @@ const Section = ({
                 textAlign === "right" ? "order-last" : undefined
               )}
             >
-              <div className="text-[28px] font-light font-favorit">
+              <div className="text-[18px] font-light font-favorit">
                 {secondColumn}
               </div>
             </div>

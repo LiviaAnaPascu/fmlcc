@@ -17,7 +17,7 @@ const NavBar = ({ logo, sections }: NavBarProps) => {
 
   return (
     <>
-      <nav className="fixed top-0 flex w-full backdrop-blur-sm p-4 z-10 h-[162px] items-center">
+      <nav className="fixed top-0 flex w-full backdrop-blur-sm p-4 z-10 h-[100px] items-center">
         <div className="grow w-full flex justify-around">
           {navBarSections.first.map((section) => (
             <a
@@ -29,7 +29,7 @@ const NavBar = ({ logo, sections }: NavBarProps) => {
             </a>
           ))}
         </div>
-        <div className="flex-none">{logo}</div>
+        <div className="flex-none w-[100px]">{logo}</div>
         <div className="grow w-full flex justify-around">
           {navBarSections.second.map((section) => (
             <a

@@ -14,13 +14,13 @@ type GalleryProps = {
 };
 
 const images = [
-  { src: image1, aspectRatio: 1.5, size: 250, left: -50, bottom: 0 },
-  { src: image2, aspectRatio: 1.2, size: 150, left: 20, bottom: -150 },
-  { src: image3, aspectRatio: 1.2, size: 300, left: -80, bottom: 0 },
-  { src: image4, aspectRatio: 1.8, size: 400, left: -10, bottom: -100 },
-  { src: image5, aspectRatio: 1.3, size: 200, left: 80, bottom: 0 },
-  { src: image6, aspectRatio: 1.6, size: 220, left: 50, bottom: -120 },
-  { src: image7, aspectRatio: 1.6, size: 200, left: 50, bottom: 0 },
+  { src: image1, aspectRatio: 1.5, size: 500, left: -50, bottom: 0 },
+  { src: image2, aspectRatio: 1.2, size: 375, left: 20, bottom: -150 },
+  { src: image3, aspectRatio: 1.2, size: 600, left: -80, bottom: 0 },
+  { src: image4, aspectRatio: 1.8, size: 1000, left: -10, bottom: -100 },
+  { src: image5, aspectRatio: 1.3, size: 500, left: 80, bottom: 0 },
+  { src: image6, aspectRatio: 1.6, size: 440, left: 50, bottom: -120 },
+  { src: image7, aspectRatio: 1.6, size: 600, left: 50, bottom: 0 },
 ];
 
 const Gallery = ({ className }: GalleryProps) => {
@@ -63,7 +63,7 @@ const Gallery = ({ className }: GalleryProps) => {
       ref={containerRef}
       className={classNames(
         className,
-        "h-[600px] w-full bg-black flex items-center justify-between"
+        "h-[100vh] w-full bg-black flex items-center justify-between"
       )}
       id="home"
     >
