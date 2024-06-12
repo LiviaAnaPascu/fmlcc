@@ -2,7 +2,10 @@ import { ReactElement, useMemo } from "react";
 
 type Event = {
   day: number;
-  message: string;
+  name: string;
+  timelocation: string;
+  distance: string; 
+  average: string;
 };
 
 type EventsProps = {
@@ -42,7 +45,20 @@ const Events = ({ events }: EventsProps) => {
         >
           <div className="day-number">{day}</div>
           {event && (
-            <div className="event-message capitalize">{event.message}</div>
+            <div className="event-message">
+              {
+                (event.name !== "" && event.timelocation !== "" && event.distance !=="" && event.average !== "") ? (
+                  <div className="flex flex-col" style={{ wordWrap: "break-word"}}>
+                  <span className="font-newEdge text-sm">{event.name}</span>
+                  <span className="font-favorit text-sm">{event.timelocation}</span>
+                  <span className="font-favorit text-sm">{event.distance}</span>
+                  <span className="font-favorit text-sm">{event.average}</span>
+                  </div>
+                ) : (
+                  <span className="font-favorit text-sm">TBA</span>
+                )
+              }
+            </div>
           )}
         </div>
       );
@@ -52,7 +68,7 @@ const Events = ({ events }: EventsProps) => {
   }, [adjustedFirstDayOfMonth, daysArray, events]);
 
   return (
-    <div className="mt-[20px]">
+    <div className="p-[20px] mt-[200px]">
       <div className="grid grid-cols-7 lowercase border">
         {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
           <div

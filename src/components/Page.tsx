@@ -1,6 +1,8 @@
 import { motion, useIsPresent, useScroll, useSpring } from "framer-motion";
 import { Image } from "./Image";
 import { Link } from "react-router-dom";
+import { ReactNode } from "react";
+import web2 from "../assets/images/web2.png"
 
 export interface PhotoMetadata {
   aspectRatio: string;
@@ -12,9 +14,10 @@ interface Props {
   title: string;
   titleWidth: number;
   photos?: PhotoMetadata[];
+  content? : ReactNode;
 }
 
-export function Page({ category, alt, title, titleWidth, photos }: Props) {
+export function Page({ category, alt, title, titleWidth, photos, content}: Props) {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -29,16 +32,21 @@ export function Page({ category, alt, title, titleWidth, photos }: Props) {
         <ColumnHeader header={title}/>
       </h1>
       <motion.div className="progress" style={{ scaleX }} />
-      <footer className="back">
-        <Link to="/" className="font-favorit">Back To Home</Link>
-      </footer>
+      <div className="back">
+        <Link to="/" className="font-favorit">back to home</Link>
+      </div>
+      <div className="mb-[100px]">{
+        content
+      }</div>
       <motion.div
         initial={{ scaleX: 1 }}
-        animate={{ scaleX: 0, transition: { duration: 0.5, ease: "circOut" } }}
-        exit={{ scaleX: 1, transition: { duration: 0.5, ease: "circIn" } }}
+        animate={{ scaleX: 0, transition: { duration: 1, ease: "easeIn" } }}
+        exit={{ scaleX: 1, transition: { duration: 1, ease: "easeOut" } }}
         style={{ originX: isPresent ? 0 : 1 }}
         className="privacy-screen"
-      />
+      >
+        {/* <img src={web2}></img> */}
+      </motion.div>
     </article>
   );
 }

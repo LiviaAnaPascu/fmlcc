@@ -7,7 +7,6 @@ type SectionProps = {
   content: string | ReactNode;
   id?: string;
   textAlign?: "left" | "right";
-  imageSrc: string;
 };
 
 const getContentColumns = (content: string | ReactNode) => {
@@ -39,13 +38,10 @@ const Section = ({
   content,
   id,
   textAlign,
-  imageSrc,
 }: SectionProps) => {
   //const [scrollY, setScrollY] = useState(0);
   const columnRef = useRef<HTMLDivElement>(null);
   const topColumnRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
   const [firstColumn, secondColumn] = getContentColumns(content);
 
   return (
@@ -78,19 +74,6 @@ const Section = ({
                 {secondColumn}
               </div>
             </div>
-            <div className="w-[670px]">
-              <div
-                ref={imageRef}
-                //className="absolute transition-transform duration-250 ease-in-out"
-                // style={{ top: "unset", left: "0px" }}
-              >
-                <img
-                  src={imageSrc}
-                  alt="Section illustration"
-                  className="w-[670px]"
-                />
-              </div>
-            </div>
           </div>
         </div>
       ) : (
@@ -106,7 +89,7 @@ const Section = ({
 type ColumnHeaderProps = {
   header: string;
 };
-const ColumnHeader = ({ header }: ColumnHeaderProps) => {
+export const ColumnHeader = ({ header }: ColumnHeaderProps) => {
   const formattedHeader = () => {
     return (
       <>

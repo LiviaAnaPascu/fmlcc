@@ -1,17 +1,42 @@
+import React, { useState, useRef } from "react";
 import { motion, useIsPresent } from "framer-motion";
-import { Link } from "react-router-dom";
 import NavBar from "./navbar/NavBar";
 import { Logo } from "../svgs/Logo";
+import { ColumnHeader } from "./Section";
 
 export function Home() {
   const isPresent = useIsPresent();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const sections = ["home", "about", "strava", "events"];
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(error => {
+        console.error("Error attempting to play the video:", error);
+      });
+    }
+  };
+
+  const sections = ["about", "events", "strava", "instagram"];
 
   return (
     <>
-    <NavBar logo={<Logo width={139} height={88} />} sections={sections} />
-    
+      <NavBar logo={<Logo width={100} height={88} />} sections={sections} />
+      <div className="video-container" style={{ position: "relative" }}>
+        {!isPlaying && (
+          <button
+            onClick={handlePlay}
+            className="play-button">
+            <ColumnHeader header="Play"></ColumnHeader>
+          </button>
+        )}
+        <video ref={videoRef} controls={isPlaying} style={{ width: "100%" }}>
+          <source src={`${process.env.PUBLIC_URL}/FML_Short_V2B.mp4`} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <motion.div
         initial={{ scaleX: 1 }}
         animate={{ scaleX: 0, transition: { duration: 0.5, ease: "circOut" } }}

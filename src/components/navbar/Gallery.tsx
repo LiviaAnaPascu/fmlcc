@@ -63,7 +63,7 @@ const Gallery = ({ className }: GalleryProps) => {
       ref={containerRef}
       className={classNames(
         className,
-        "h-[100vh] w-full bg-black flex items-center justify-between"
+        "h-[100vh] mt-[-100px] w-full bg-black flex items-center justify-between"
       )}
       id="home"
     >
