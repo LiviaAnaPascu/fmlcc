@@ -33,7 +33,7 @@ export function Home() {
           </button>
         )}
         <video ref={videoRef} controls={isPlaying} style={{ width: "100%" }}>
-          <source src={`${process.env.PUBLIC_URL}/FML_Short_V2B.mp4`} type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/vercelappvideo.mp4`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
