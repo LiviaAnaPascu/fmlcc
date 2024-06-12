@@ -3,7 +3,7 @@ import { motion, useIsPresent } from "framer-motion";
 import NavBar from "./navbar/NavBar";
 import { Logo } from "../svgs/Logo";
 import { ColumnHeader } from "./Section";
-
+import screenshot from "../assets/images/screenshot.png"
 export function Home() {
   const isPresent = useIsPresent();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,10 +32,14 @@ export function Home() {
             <ColumnHeader header="Play"></ColumnHeader>
           </button>
         )}
+
         <video ref={videoRef} controls={isPlaying} style={{ width: "100%" }}>
           <source src={`${process.env.PUBLIC_URL}/vercelappvideo.mp4`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        {!isPlaying && <img src={screenshot}></img>}
+
       </div>
       <motion.div
         initial={{ scaleX: 1 }}
