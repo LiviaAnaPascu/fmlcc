@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, useIsPresent } from "framer-motion";
 import NavBar from "./navbar/NavBar";
 import { Logo } from "../svgs/Logo";
@@ -38,7 +38,8 @@ export function Home() {
           Your browser does not support the video tag.
         </video>
 
-        {!isPlaying && <img src={screenshot}></img>}
+        {!isPlaying && <><img src={screenshot} alt={"video preview"} className="top-[0px] h-[100vh] w-full"></img>
+        <div className="cover"></div></>}
 
       </div>
       <motion.div

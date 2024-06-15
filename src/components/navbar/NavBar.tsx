@@ -1,5 +1,4 @@
-import React, { ReactNode, useCallback, useMemo } from "react";
-import Gallery from "./Gallery";
+import { ReactNode, useCallback, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 type NavBarProps = {
@@ -17,7 +16,7 @@ const NavBar = ({ logo, sections }: NavBarProps) => {
   );
 
   const getLink = useCallback((section: string) => {
-    if(section == "strava") {
+    if(section === "strava") {
       return "https://www.strava.com/clubs/1248496"
     }
     if(section === "instagram") {

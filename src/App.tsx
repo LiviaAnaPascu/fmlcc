@@ -5,8 +5,6 @@ import { useLocation, useRoutes } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Page } from "./components/Page";
 import Section from "./components/Section";
-import image from "./assets/images/homeImage1.jpeg";
-import image2 from "./assets/images/homeImage2.jpeg";
 import Gallery from "./components/navbar/Gallery";
 import Events from "./components/Events";
 
@@ -47,11 +45,10 @@ export default function App() {
             <>
             <Gallery/>
             <Section
-              className="mb-[200px] mt-[-100px]"
+              className="mb-[200px] px-[40px]"
               header=""
               content={aboutContent}
               id="about"
-              textAlign="right"
             />
             </>}
         />

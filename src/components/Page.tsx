@@ -1,8 +1,6 @@
 import { motion, useIsPresent, useScroll, useSpring } from "framer-motion";
-import { Image } from "./Image";
 import { Link } from "react-router-dom";
-import { ReactNode } from "react";
-import web2 from "../assets/images/web2.png"
+import { ReactNode, useCallback } from "react";
 
 export interface PhotoMetadata {
   aspectRatio: string;
@@ -26,8 +24,15 @@ export function Page({ category, alt, title, titleWidth, photos, content}: Props
   });
   const isPresent = useIsPresent();
 
+  const getContent = useCallback(() => {
+    if(typeof content === "string") {
+      return <p>{content.toString()}</p>
+    }
+    return content
+  }, [content])
+
   return (
-    <article>
+    <div>
       <h1 style={{ "--base-width": `${titleWidth}vw`, x: "-50%" } as any}>
         <ColumnHeader header={title}/>
       </h1>
@@ -36,7 +41,7 @@ export function Page({ category, alt, title, titleWidth, photos, content}: Props
         <Link to="/" className="font-favorit">back to home</Link>
       </div>
       <div className="mb-[100px]">{
-        content
+        getContent()
       }</div>
       <motion.div
         initial={{ scaleX: 1 }}
@@ -45,9 +50,8 @@ export function Page({ category, alt, title, titleWidth, photos, content}: Props
         style={{ originX: isPresent ? 0 : 1 }}
         className="privacy-screen"
       >
-        {/* <img src={web2}></img> */}
       </motion.div>
-    </article>
+    </div>
   );
 }
 
@@ -69,5 +73,5 @@ type ColumnHeaderProps = {
       );
     };
   
-    return <div className="flex items-baseline">{formattedHeader()}</div>;
+    return <div className="flex items-baseline justify-center">{formattedHeader()}</div>;
   };

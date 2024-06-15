@@ -1,35 +1,11 @@
 import classNames from "classnames";
-import React, { ReactNode, useRef } from "react";
+import React, { ReactNode } from "react";
 
 type SectionProps = {
   className?: string;
   header: string;
   content: string | ReactNode;
   id?: string;
-  textAlign?: "left" | "right";
-};
-
-const getContentColumns = (content: string | ReactNode) => {
-  if (typeof content === "string") {
-    const sentences = content.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [];
-    let leftSide: string[] = [];
-    let rightSide: string[] = [];
-    let leftLength = 0;
-    let rightLength = 0;
-
-    sentences.forEach((sentence) => {
-      if (leftLength <= rightLength) {
-        leftSide.push(sentence);
-        leftLength += sentence.length;
-      } else {
-        rightSide.push(sentence);
-        rightLength += sentence.length;
-      }
-    });
-
-    return [leftSide, rightSide];
-  }
-  return [null, null];
 };
 
 const Section = ({
@@ -37,51 +13,21 @@ const Section = ({
   header,
   content,
   id,
-  textAlign,
 }: SectionProps) => {
-  //const [scrollY, setScrollY] = useState(0);
-  const columnRef = useRef<HTMLDivElement>(null);
-  const topColumnRef = useRef<HTMLDivElement>(null);
-  const [firstColumn, secondColumn] = getContentColumns(content);
-
   return (
-    <>
-      {typeof content === "string" ? (
-        <div
+    <> <div
           className={classNames(
             className,
             "w-full max-w-[1728px] flex flex-col gap-[75px] min-h-[100vh]"
           )}
           id={id}
         >
-          <div className="flex justify-center">
-            <div ref={topColumnRef} className="w-[750px]">
-              <ColumnHeader header={header} />
-              <div className="text-[18px] font-light font-favorit">
-                {firstColumn}
-              </div>
-            </div>
-          </div>
-          <div className={classNames("flex justify-around gap-[27px]")}>
-            <div
-              ref={columnRef}
-              className={classNames(
-                "w-[780px]",
-                textAlign === "right" ? "order-last" : undefined
-              )}
-            >
-              <div className="text-[18px] font-light font-favorit">
-                {secondColumn}
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : (
         <div className={classNames(className, "w-full min-h-[100vh]")} id={id}>
           <ColumnHeader header={header} />
           {content}
         </div>
-      )}
+        </div>
+    
     </>
   );
 };
